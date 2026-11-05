@@ -1,2 +1,0 @@
-import {json,authorized} from '../../_lib.js';
-export async function onRequestGet({request,env}){if(!await authorized(request,env))return json({error:'Unauthorized'},401);if(!env.QR_KV)return json({error:'KV binding QR_KV is missing'},503);let cursor;const items=[];do{const page=await env.QR_KV.list({prefix:'qr:',cursor,limit:1000});cursor=page.list_complete?undefined:page.cursor;for(const k of page.keys){const v=await env.QR_KV.get(k.name,'json');if(v)items.push(v)}}while(cursor);items.sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0));return json({ok:true,items})}

@@ -1,1 +1,0 @@
-export async function onRequest({request,params}){const url=new URL(request.url);return new Response(null,{status:302,headers:{location:new URL('/public.html?id='+encodeURIComponent(params.slug||''),url.origin).href,'cache-control':'no-store'}})}
