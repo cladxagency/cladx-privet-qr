@@ -1,7 +1,9 @@
 name = "cladx-privet-qr"
 compatibility_date = "2026-11-04"
-pages_build_output_dir = "."
+pages_build_output_dir = "public"
 
-# Bind this KV namespace in the Cloudflare Pages dashboard (Settings > Functions > KV namespace bindings)
+# Optional alternative to the Cloudflare Dashboard binding:
+# Uncomment after creating a KV namespace and replace the ID with its real ID.
+# [[kv_namespaces]]
 # binding = "QR_KV"
-# id = "YOUR_KV_NAMESPACE_ID"
+# id = "PASTE_REAL_KV_NAMESPACE_ID_HERE"
