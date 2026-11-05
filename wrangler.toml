@@ -4,6 +4,6 @@ pages_build_output_dir = "public"
 
 # Optional alternative to the Cloudflare Dashboard binding:
 # Uncomment after creating a KV namespace and replace the ID with its real ID.
-# [[kv_namespaces]]
-# binding = "QR_KV"
-# id = "PASTE_REAL_KV_NAMESPACE_ID_HERE"
+[[kv_namespaces]]
+binding = "QR_KV"
+id = "587ed65830994d50b161bcb0ad65e888"
