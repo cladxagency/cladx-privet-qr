@@ -1,0 +1,9 @@
+const enc=new TextEncoder();
+const b64u=b=>btoa(String.fromCharCode(...new Uint8Array(b))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+async function key(secret){return crypto.subtle.importKey('raw',enc.encode(secret),{name:'HMAC',hash:'SHA-256'},false,['sign','verify'])}
+export async function sign(payload,secret){const body=b64u(enc.encode(JSON.stringify(payload)));const sig=await crypto.subtle.sign('HMAC',await key(secret),enc.encode(body));return body+'.'+b64u(sig)}
+export async function verify(token,secret){try{const [body,sig]=token.split('.');const raw=Uint8Array.from(atob(sig.replace(/-/g,'+').replace(/_/g,'/')),c=>c.charCodeAt(0));const ok=await crypto.subtle.verify('HMAC',await key(secret),raw,enc.encode(body));if(!ok)return null;const p=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(body.replace(/-/g,'+').replace(/_/g,'/')),c=>c.charCodeAt(0))));return p.exp>Date.now()?p:null}catch{return null}}
+export async function authorized(request,env){const h=request.headers.get('authorization')||'';const t=h.startsWith('Bearer ')?h.slice(7):'';if(!env.SESSION_SECRET||!t)return false;return !!(await verify(t,env.SESSION_SECRET))}
+export function json(data,status=200){return new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store'}})}
+export async function readJson(request){try{return await request.json()}catch{return null}}
+export function safeRecord(x,id){if(!x||typeof x!=='object'||Array.isArray(x))return null;const clean={id:String(id).slice(0,80),name:String(x.name||'Untitled').slice(0,120),type:['url','text','phone','bank','payments'].includes(x.type)?x.type:'url',data:x.data&&typeof x.data==='object'?x.data:{},style:x.style&&typeof x.style==='object'?x.style:{},active:x.active!==false,createdAt:Number(x.createdAt)||Date.now(),updatedAt:Date.now()};return clean}
