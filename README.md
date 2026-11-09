@@ -1,6 +1,6 @@
 # CLADx Privet QR
 
-**Package version: 1.1.0**
+**Package version: 1.1.1**
 
 تحديث محدد مبني على الإصدار المستقر 1.0.2. تم الحفاظ على بنية Cloudflare Pages وواجهات API الحالية، مع إضافة واجهة إدارة موسعة وأنواع QR إضافية وتتبع المسح.
 
@@ -75,3 +75,12 @@
 5. تحقق من وصول إشعار للمسح.
 6. اختبر Backup now ثم Restore from hosting.
 7. اختبر التثبيت من قائمة المتصفح على الهاتف؛ ظهور اقتراح التثبيت يعتمد على دعم المتصفح وشروطه.
+
+
+## v1.1.1 — targeted fixes
+- Fixed QR type switching by retaining the selected type and unsaved type-specific draft fields.
+- New QR actions now open a clean create form; saved QR records return to the refreshed library.
+- Preserved custom short-link IDs through type changes and on save.
+- Added live destination-page previews for bank, app, video and multi-payment QR types above the QR preview.
+- Added a transparent-background preview indicator and sticky desktop preview column.
+- Added branded, distinct unavailable pages for paused and deleted QR records.

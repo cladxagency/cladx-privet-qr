@@ -1,8 +1,15 @@
+function unavailablePage(state){
+ const inactive=state==='inactive';
+ const title=inactive?'QR code temporarily disabled':'QR code unavailable';
+ const message=inactive?'This QR code has been paused by its owner. Please try again later.':'This QR code may have been deleted or the link is incorrect.';
+ const html=`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#000000"><title>${title} · CLADx</title><link rel="icon" type="image/webp" href="/assets/favicon.webp"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"><style>*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,sans-serif;background:#000;color:#effcff}body{min-height:100dvh;display:flex;flex-direction:column;padding:18px}.head{height:72px;border:1px solid rgba(255,255,255,.18);border-radius:50px;display:flex;align-items:center;padding:10px 22px}.head img{width:150px;height:46px;object-fit:contain;border-radius:0}.main{flex:1;display:grid;place-items:center;text-align:center;padding:20px}.message{max-width:480px}.mark{width:94px;height:94px;margin:0 auto 22px;border-radius:30px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(0,181,217,.18),rgba(0,255,255,.07));border:1px solid rgba(0,229,255,.3);color:#00e5f5;font-size:42px}.message h1{font-size:clamp(23px,4vw,34px);margin:0 0 12px}.message p{color:#91aab1;line-height:1.7;margin:0}.foot{text-align:center;color:#71868d;font-size:11px;padding:14px}.foot a{color:#9ab9c0;text-decoration:none}.foot a:hover{color:#00dff4}@media(max-height:480px){body{padding:10px}.head{height:54px}.head img{height:36px}.main{padding:8px}.mark{width:62px;height:62px;font-size:28px;margin-bottom:10px}}</style></head><body><header class="head"><img src="/assets/logo.webp" alt="CLADx"></header><main class="main"><section class="message"><div class="mark"><i class="fa-solid ${inactive?'fa-pause':'fa-qrcode'}"></i></div><h1>${title}</h1><p>${message}</p></section></main><footer class="foot">Developed by <a href="https://cladxagency.com" target="_blank" rel="noopener">CLADx</a></footer></body></html>`;
+ return new Response(html,{status:inactive?410:404,headers:{'content-type':'text/html; charset=utf-8','cache-control':'no-store'}});
+}
 export async function onRequest({request,env,params}){
  const id=String(params.slug||'').replace(/[^a-zA-Z0-9_-]/g,'').slice(0,80);
  if(!env.QR_KV)return new Response('Storage unavailable',{status:503});
  const item=await env.QR_KV.get('qr:'+id,'json');
- if(!item||item.active===false)return new Response('QR link not found',{status:404,headers:{'content-type':'text/plain; charset=utf-8'}});
+ if(!item)return unavailablePage('deleted');if(item.active===false)return unavailablePage('inactive');
  try{
  const now=Date.now(),ua=request.headers.get('user-agent')||'',country=request.cf?.country||'Unknown';
  const device=/mobile|android|iphone|ipad/i.test(ua)?'mobile':'desktop';
