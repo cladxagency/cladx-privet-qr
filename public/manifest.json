@@ -9,13 +9,9 @@
   "icons": [
     {
       "src": "/assets/favicon.webp",
-      "sizes": "192x192",
-      "type": "image/webp"
-    },
-    {
-      "src": "/assets/favicon-512.webp",
-      "sizes": "512x512",
-      "type": "image/webp"
+      "sizes": "any",
+      "type": "image/webp",
+      "purpose": "any maskable"
     }
   ]
 }

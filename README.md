@@ -1,6 +1,6 @@
 # CLADx Privet QR
 
-**Package version: 1.1.1**
+**Package version: 1.1.2**
 
 تحديث محدد مبني على الإصدار المستقر 1.0.2. تم الحفاظ على بنية Cloudflare Pages وواجهات API الحالية، مع إضافة واجهة إدارة موسعة وأنواع QR إضافية وتتبع المسح.
 
@@ -77,10 +77,36 @@
 7. اختبر التثبيت من قائمة المتصفح على الهاتف؛ ظهور اقتراح التثبيت يعتمد على دعم المتصفح وشروطه.
 
 
-## v1.1.1 — targeted fixes
+## v1.1.2 — targeted fixes
 - Fixed QR type switching by retaining the selected type and unsaved type-specific draft fields.
 - New QR actions now open a clean create form; saved QR records return to the refreshed library.
 - Preserved custom short-link IDs through type changes and on save.
 - Added live destination-page previews for bank, app, video and multi-payment QR types above the QR preview.
 - Added a transparent-background preview indicator and sticky desktop preview column.
 - Added branded, distinct unavailable pages for paused and deleted QR records.
+
+
+## v1.1.2 — focused refinements
+- Added desktop-only hover QR preview beside edit actions; edit click remains unchanged.
+- Enforced 30px interface radii while preserving square CLADx logo.webp assets.
+- Set interface icons to 13px and adjusted QR download button spacing.
+- Kept page previews above QR preview and removed nested preview scrolling.
+- Reordered Overview so Scan analytics precedes Recent QR.
+- Replaced account initial with favicon.webp and compact anchored menu.
+- Added mobile-only language/theme controls in Settings and dynamic AR/EN, sun/moon controls.
+- Added hosting connection status card and responsive backup grid.
+- Expanded Arabic translations and RTL handling; payment page logo now always uses logo.webp.
+- Added language switch to disabled/deleted QR destination pages.
+
+
+## v1.1.2 — focused UI refinements
+- Desktop-only QR hover preview next to edit action; click still opens editor.
+- Consistent 30px UI corners; logo.webp remains square-cornered.
+- 13px icons and QR-download-only spacing.
+- Page preview retained above QR preview; desktop sticky preview uses the page scroll only.
+- Overview analytics moved above recent QR list.
+- Compact favicon account menu; mobile-only settings toggles.
+- Responsive backup cards with Cloudflare connection status.
+- Desktop Create QR + and mobile QR + labels.
+- Expanded Arabic/RTL strings and light palette; payment page always uses logo.webp.
+- Branded disabled/deleted QR pages include language switch.
