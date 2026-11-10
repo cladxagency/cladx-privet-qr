@@ -1,12 +1,12 @@
 # CLADx Privet QR
 
-**Package version: 1.1.2**
+**Package version: 1.1.3**
 
 تحديث محدد مبني على الإصدار المستقر 1.0.2. تم الحفاظ على بنية Cloudflare Pages وواجهات API الحالية، مع إضافة واجهة إدارة موسعة وأنواع QR إضافية وتتبع المسح.
 
 ## المزايا المضافة في 1.1.0
 
-- شاشة دخول ممتدة ومتجاوبة: شعار CLADx في الهيدر، رسم توضيحي QR، تبديل اللغة واللون، وتذييل Developed by CLADx.
+- شاشة دخول ممتدة ومتجاوبة: شعار CLADx في الهيدر، رسم توضيحي QR، تبديل اللغة واللون، وتذييل QRCo Developed by CLADx.
 - شعار `logo.webp` في القائمة الجانبية، قائمة سفلية للهاتف، إغلاق القائمة بالنقر خارجها، وقائمة حساب جانبية.
 - أحدث ثلاثة رموز في Overview، ومكتبة كاملة مع بحث وتعديل ونسخ وحذف وتفعيل/إيقاف.
 - أنواع QR: Link وPhone وText وBank details وApp وSmart map وVideo Marketing وMulti Payments.
@@ -63,7 +63,9 @@
 - `assets/logo.webp`: شعار CLADx الكامل.
 - `assets/cladx-mark.webp`: العلامة المختصرة القديمة.
 - `assets/qr-cladx-logo-icon.webp`: شعار منتصف QR.
-- `assets/favicon.webp`: favicon وPWA icon.
+- `assets/favicon.webp`: favicon لوحة التحكم.
+- `assets/avatar.webp`: صورة الحساب وصورة المشاركة وfavicon الصفحات العامة.
+- `assets/favicon-512.webp`: أيقونة PWA وApple Touch Icon وصورة شاشة البدء.
 - `assets/notifications.webp`: رمز الإشعارات.
 
 ## تحقق ما بعد النشر
@@ -110,3 +112,12 @@
 - Desktop Create QR + and mobile QR + labels.
 - Expanded Arabic/RTL strings and light palette; payment page always uses logo.webp.
 - Branded disabled/deleted QR pages include language switch.
+
+
+## v1.1.3 — Bio links
+- Added one unique Bio links experience at the fixed public path `/bio`; the QR short path is reserved and only one Bio links page can exist per workspace.
+- Bio links supports company name, description, profile avatar, up to six social icons per row, multiple link cards, share action, and a live editor preview.
+- Added `avatar.webp` for public sharing identity, replaced dashboard `favicon.webp`, and added the supplied `favicon-512.webp` as the PWA icon and splash artwork.
+- Public destination pages use `avatar.webp` for social preview metadata.
+- Footer attribution is now `QRCo Developed by CLADx`.
+- Existing Cloudflare KV records are preserved; no migration or namespace replacement is required.
