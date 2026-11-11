@@ -1,15 +1,15 @@
-# CLADx Privet QR
+# QRCo Private System (CLADx)
 
 **Package version: 1.1.3**
 
-تحديث محدد مبني على الإصدار المستقر 1.0.2. تم الحفاظ على بنية Cloudflare Pages وواجهات API الحالية، مع إضافة واجهة إدارة موسعة وأنواع QR إضافية وتتبع المسح.
+تحديث محدد مبني على الحزمة المستقرة v1.1.2. تم الحفاظ على بنية Cloudflare Pages وواجهات API الحالية، مع إضافة واجهة إدارة موسعة وأنواع QR إضافية وتتبع المسح.
 
 ## المزايا المضافة في 1.1.0
 
 - شاشة دخول ممتدة ومتجاوبة: شعار CLADx في الهيدر، رسم توضيحي QR، تبديل اللغة واللون، وتذييل QRCo Developed by CLADx.
 - شعار `logo.webp` في القائمة الجانبية، قائمة سفلية للهاتف، إغلاق القائمة بالنقر خارجها، وقائمة حساب جانبية.
 - أحدث ثلاثة رموز في Overview، ومكتبة كاملة مع بحث وتعديل ونسخ وحذف وتفعيل/إيقاف.
-- أنواع QR: Link وPhone وText وBank details وApp وSmart map وVideo Marketing وMulti Payments.
+- أنواع QR: Link وPhone وText وBank account وApp وSmart map وV-Marketing وPayments وBio links.
 - معرّف قصير مقترح من اسم QR بحروف لاتينية مع أربعة أرقام، ويمكن تخصيصه.
 - إعدادات ألوان مستقلة للنقاط وإطار وعلامة مركز نقاط QR والخلفية، خلفية شفافة، أنماط متعددة، وخيارات شعار وحجم.
 - تنزيل PNG وSVG وWEBP وPDF ومشاركة الرابط مع عنوان QR.
@@ -63,9 +63,7 @@
 - `assets/logo.webp`: شعار CLADx الكامل.
 - `assets/cladx-mark.webp`: العلامة المختصرة القديمة.
 - `assets/qr-cladx-logo-icon.webp`: شعار منتصف QR.
-- `assets/favicon.webp`: favicon لوحة التحكم.
-- `assets/avatar.webp`: صورة الحساب وصورة المشاركة وfavicon الصفحات العامة.
-- `assets/favicon-512.webp`: أيقونة PWA وApple Touch Icon وصورة شاشة البدء.
+- `assets/favicon.webp`: favicon وPWA icon.
 - `assets/notifications.webp`: رمز الإشعارات.
 
 ## تحقق ما بعد النشر
@@ -102,6 +100,8 @@
 
 
 ## v1.1.2 — focused UI refinements
+
+## v1.1.3 — QRCo Bio links and brand assets
 - Desktop-only QR hover preview next to edit action; click still opens editor.
 - Consistent 30px UI corners; logo.webp remains square-cornered.
 - 13px icons and QR-download-only spacing.
@@ -114,10 +114,17 @@
 - Branded disabled/deleted QR pages include language switch.
 
 
-## v1.1.3 — Bio links
-- Added one unique Bio links experience at the fixed public path `/bio`; the QR short path is reserved and only one Bio links page can exist per workspace.
-- Bio links supports company name, description, profile avatar, up to six social icons per row, multiple link cards, share action, and a live editor preview.
-- Added `avatar.webp` for public sharing identity, replaced dashboard `favicon.webp`, and added the supplied `favicon-512.webp` as the PWA icon and splash artwork.
-- Public destination pages use `avatar.webp` for social preview metadata.
-- Footer attribution is now `QRCo Developed by CLADx`.
-- Existing Cloudflare KV records are preserved; no migration or namespace replacement is required.
+## v1.1.3 — QRCo Bio links and brand assets
+
+- Added the singleton `Bio links` experience with fixed `/go/bio` ID, editable social platforms, four suggested social fields, four suggested link fields, live mobile preview, and public share action.
+- Added Bio links to the accepted Cloudflare KV record types.
+- Reused the same two-column desktop / one-column mobile link-card layout for Payments and Bio links; removed the payment continuation caption.
+- Updated public page metadata and favicons to use `avatar.webp`; kept the dashboard favicon on `favicon.webp` and included `favicon-512.webp` in the install manifest.
+- Updated QRCo naming, company-name defaults, type labels, URL normalization, drawer positioning, save-button visibility behavior, and public attribution.
+- Added company name and default language/theme preferences to Settings.
+
+Asset mapping from the three images attached to this update:
+- `avatar.webp`: QRCo full mark.
+- `favicon.webp` and `favicon-512.webp`: QRCo compact mark.
+- `cladx-mark.webp`: supplied CLADx symbol.
+- Existing `logo.webp` remains the CLADx wordmark used in page headers.
