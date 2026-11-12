@@ -154,14 +154,14 @@ html[dir=rtl] .login-card h1,html[dir=rtl] .login-card p{text-align:right}html[d
 .bank-item-line{display:flex;align-items:center;gap:12px}
 .bank-item-line strong{flex:1}
 .copy-bank{margin:0!important;flex:0 0 36px;width:36px;height:36px;display:grid;place-items:center}
-.save-qr-action{position:static}.save-qr-action.is-floating{position:fixed;z-index:120;right:20px;bottom:20px;box-shadow:0 12px 36px rgba(0,181,217,.3)}
+.save-qr-action{position:static}.save-qr-floating{display:none;position:fixed;z-index:120;inset-inline-end:20px;bottom:20px;box-shadow:0 12px 36px rgba(0,181,217,.3)}.save-qr-floating.is-visible{display:inline-flex}
 .qr-download-actions{margin-top:15px}
 @media(max-width:700px){
  .account-drawer{right:16px;left:auto;top:70px;width:min(310px,calc(100vw - 32px));max-height:calc(100dvh - 100px)}
  .drawer-mobile-toggles{display:flex}
  .sidebar{box-shadow:none}
  .sidebar.open{box-shadow:20px 0 70px #000}
- .save-qr-action.is-floating{right:auto;left:20px;bottom:calc(48px + 20px + env(safe-area-inset-bottom))}
+ .save-qr-floating{inset-inline-end:auto;inset-inline-start:20px;bottom:calc(48px + 20px + env(safe-area-inset-bottom))}
  .bio-social-editor-row,.bio-link-editor-row{grid-template-columns:34px minmax(0,1fr) auto}
  .bio-social-editor-row input,.bio-link-editor-row input{grid-column:2}
  .bio-social-editor-row select{grid-column:2}
@@ -216,3 +216,7 @@ html[dir=rtl] .account-drawer{left:45px;right:auto}
 
 .public-experience:not(.video-experience){display:flex;flex-direction:column;min-height:calc(100dvh - 50px)}
 .public-experience:not(.video-experience)>.public-footer{margin-top:auto}
+
+/* QRCo v1.1.4: floating Save follows the active writing direction. */
+html[dir=rtl] .save-qr-floating{inset-inline-start:20px;inset-inline-end:auto}
+@media(max-width:700px){html[dir=rtl] .save-qr-floating{inset-inline-start:auto;inset-inline-end:20px}}

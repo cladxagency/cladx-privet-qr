@@ -128,3 +128,9 @@ Asset mapping from the three images attached to this update:
 - `favicon.webp` and `favicon-512.webp`: QRCo compact mark.
 - `cladx-mark.webp`: supplied CLADx symbol.
 - Existing `logo.webp` remains the CLADx wordmark used in page headers.
+
+
+## v1.1.4 maintenance patch
+- Restored the Smart Map branch editor fields (branch name, Google Maps URL, latitude, longitude) while retaining the existing `branches` data structure and save validation.
+- Updated visible type names: Video AD / فيديو إعلاني, Bank / بنك, and Smart map / خرائط ذكية. Internal type keys remain unchanged for stored-record compatibility.
+- Create mode keeps its Create QR action at the end of the form. Edit mode uses a separate floating Save control only while the original Save changes button is outside the viewport; the original bottom button remains Save changes. Floating placement mirrors the current language direction.
