@@ -1,0 +1,5 @@
+import {json,authorized,readJson} from '../_lib.js';
+const defaults={theme:'dark',lang:'en'};
+const clean=s=>({theme:s?.theme==='light'?'light':'dark',lang:s?.lang==='ar'?'ar':'en'});
+export async function onRequestGet({request,env}){if(!await authorized(request,env))return json({error:'Unauthorized'},401);if(!env.QR_KV)return json({error:'KV binding QR_KV is missing'},503);const [admin,publicPages]=await Promise.all([env.QR_KV.get('settings:admin','json'),env.QR_KV.get('settings:public','json')]);return json({ok:true,settings:{admin:clean(admin||defaults),public:clean(publicPages||defaults)}})}
+export async function onRequestPut({request,env}){if(!await authorized(request,env))return json({error:'Unauthorized'},401);if(!env.QR_KV)return json({error:'KV binding QR_KV is missing'},503);const body=await readJson(request),s=body?.settings||{};const admin=clean(s.admin||defaults),publicPages=clean(s.public||defaults);await Promise.all([env.QR_KV.put('settings:admin',JSON.stringify(admin)),env.QR_KV.put('settings:public',JSON.stringify(publicPages))]);return json({ok:true,settings:{admin,public:publicPages}})}

@@ -1,6 +1,6 @@
 # QRCo Private System (CLADx)
 
-**Package version: 1.1.3**
+**Package version: 1.1.5**
 
 تحديث محدد مبني على الحزمة المستقرة v1.1.2. تم الحفاظ على بنية Cloudflare Pages وواجهات API الحالية، مع إضافة واجهة إدارة موسعة وأنواع QR إضافية وتتبع المسح.
 
@@ -9,15 +9,15 @@
 - شاشة دخول ممتدة ومتجاوبة: شعار CLADx في الهيدر، رسم توضيحي QR، تبديل اللغة واللون، وتذييل QRCo Developed by CLADx.
 - شعار `logo.webp` في القائمة الجانبية، قائمة سفلية للهاتف، إغلاق القائمة بالنقر خارجها، وقائمة حساب جانبية.
 - أحدث ثلاثة رموز في Overview، ومكتبة كاملة مع بحث وتعديل ونسخ وحذف وتفعيل/إيقاف.
-- أنواع QR: Link وPhone وText وBank account وApp وSmart map وV-Marketing وPayments وBio links.
+- أنواع QR: Link وPhone وText وBank وApp وSmart map وVideo AD وPayments وBio links.
 - معرّف قصير مقترح من اسم QR بحروف لاتينية مع أربعة أرقام، ويمكن تخصيصه.
 - إعدادات ألوان مستقلة للنقاط وإطار وعلامة مركز نقاط QR والخلفية، خلفية شفافة، أنماط متعددة، وخيارات شعار وحجم.
 - تنزيل PNG وSVG وWEBP وPDF ومشاركة الرابط مع عنوان QR.
 - معاينة صفحة Multi Payments لحظيًا؛ عمود واحد على الهاتف وعمودان على الكمبيوتر.
-- صفحات عامة للبيانات البنكية وMulti Payments وVideo Marketing وApp وSmart map، مع شعار CLADx وتذييل Provided by CLADx.
+- صفحات عامة للبيانات البنكية وMulti Payments وVideo AD وApp وSmart map، مع شعار CLADx وتذييل Provided by CLADx.
 - تتبع زيارات روابط QR وإحصاءات إجمالية حسب النوع، وتنبيهات للمسح ومراحل 50 و100 و500 و1000 و5000.
 - Backup now يجمع بيانات KV والتخزين المحلي، واستعادة من نسخة الاستضافة، مع الاستيراد والتصدير.
-- `manifest.json` وService Worker لتسهيل تثبيت الواجهة باسم Our QR.
+- `manifest.json` وService Worker لتسهيل تثبيت الواجهة باسم QRCo.
 
 ## أنواع الوجهات
 
@@ -27,7 +27,7 @@
 - **Bank details:** صفحة بيانات مع زر نسخ لكل حقل.
 - **App:** يختار Apple App Store أو Google Play أو Other devices حسب نوع الجهاز، ثم يستخدم أول رابط صالح كخيار احتياطي.
 - **Smart map:** يطلب إذن الموقع ويختار أقرب فرع من الفروع التي تحتوي على إحداثيات؛ عند رفض GPS أو عدم توافر إحداثيات يستخدم أول فرع.
-- **Video Marketing:** صفحة متجاوبة تعرض تضمين الفيديو مع تشغيل تلقائي صامت ومحاولة تشغيل فوري.
+- **Video AD:** صفحة متجاوبة تعرض تضمين الفيديو مع تشغيل تلقائي صامت ومحاولة تشغيل فوري.
 - **Multi Payments:** صفحة روابط دفع، عمود واحد على الهاتف وعمودان على الشاشات الأكبر.
 
 ## ملاحظات مهمة حول منصات الفيديو والمتصفح
@@ -63,7 +63,10 @@
 - `assets/logo.webp`: شعار CLADx الكامل.
 - `assets/cladx-mark.webp`: العلامة المختصرة القديمة.
 - `assets/qr-cladx-logo-icon.webp`: شعار منتصف QR.
-- `assets/favicon.webp`: favicon وPWA icon.
+- `assets/favicon.webp`: favicon لوحة التحكم وشاشة التحميل.
+- `assets/favicon-512.webp`: أيقونة تطبيق PWA.
+- `assets/avatar.webp`: favicon وصورة المشاركة للصفحات العامة، وصورة الحساب.
+- `assets/hero-section.webp`: الرسم التوضيحي في شاشة تسجيل الدخول.
 - `assets/notifications.webp`: رمز الإشعارات.
 
 ## تحقق ما بعد النشر
@@ -130,7 +133,24 @@ Asset mapping from the three images attached to this update:
 - Existing `logo.webp` remains the CLADx wordmark used in page headers.
 
 
-## v1.1.4 maintenance patch
+## v1.1.5 maintenance patch
 - Restored the Smart Map branch editor fields (branch name, Google Maps URL, latitude, longitude) while retaining the existing `branches` data structure and save validation.
 - Updated visible type names: Video AD / فيديو إعلاني, Bank / بنك, and Smart map / خرائط ذكية. Internal type keys remain unchanged for stored-record compatibility.
 - Create mode keeps its Create QR action at the end of the form. Edit mode uses a separate floating Save control only while the original Save changes button is outside the viewport; the original bottom button remains Save changes. Floating placement mirrors the current language direction.
+
+
+### QRCo v1.1.5
+- Updated supplied visual assets and the start-screen illustration.
+- Added server-backed default language and appearance preferences for public QR pages (`settings:public` in the existing `QR_KV` namespace).
+- Public preferences use the existing `QR_KV` binding; no new Cloudflare binding or secret is required.
+
+
+## v1.1.5 — focused visual, public-page and settings refinements
+- Updated the supplied brand assets, QRCo splash/preloader mark and responsive login illustration.
+- Updated PWA name and app icon to QRCo / favicon-512.webp.
+- Added shared Cloudflare KV defaults for dashboard and public-page language/theme settings using the existing QR_KV binding.
+- Removed the Developed by footer from public QR pages; retained Provided by CLADx.
+- Added public share controls to Payments and Bank pages, and translated fixed public-page labels using the selected public language.
+- Added horizontal QR shape/finder/logo pickers, seven options for each pattern family, and social-brand center-logo choices. The seventh QR-pattern option uses the library's supported circular QR shape.
+- Added the Delete Cache control without deleting Cloudflare KV records.
+- Kept the original QR records, routes, backup data and authentication secrets unchanged.

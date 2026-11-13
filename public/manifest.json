@@ -1,6 +1,6 @@
 {
-  "name": "Our company QR code management",
-  "short_name": "Our QR",
+  "name": "QRCo",
+  "short_name": "QRCo",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
