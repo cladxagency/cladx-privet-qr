@@ -133,19 +133,19 @@ Asset mapping from the three images attached to this update:
 - Existing `logo.webp` remains the CLADx wordmark used in page headers.
 
 
-## v1.1.5 maintenance patch
+## v1.1.6 maintenance patch
 - Restored the Smart Map branch editor fields (branch name, Google Maps URL, latitude, longitude) while retaining the existing `branches` data structure and save validation.
 - Updated visible type names: Video AD / فيديو إعلاني, Bank / بنك, and Smart map / خرائط ذكية. Internal type keys remain unchanged for stored-record compatibility.
 - Create mode keeps its Create QR action at the end of the form. Edit mode uses a separate floating Save control only while the original Save changes button is outside the viewport; the original bottom button remains Save changes. Floating placement mirrors the current language direction.
 
 
-### QRCo v1.1.5
+### QRCo v1.1.6
 - Updated supplied visual assets and the start-screen illustration.
 - Added server-backed default language and appearance preferences for public QR pages (`settings:public` in the existing `QR_KV` namespace).
 - Public preferences use the existing `QR_KV` binding; no new Cloudflare binding or secret is required.
 
 
-## v1.1.5 — focused visual, public-page and settings refinements
+## v1.1.6 — focused visual, public-page and settings refinements
 - Updated the supplied brand assets, QRCo splash/preloader mark and responsive login illustration.
 - Updated PWA name and app icon to QRCo / favicon-512.webp.
 - Added shared Cloudflare KV defaults for dashboard and public-page language/theme settings using the existing QR_KV binding.

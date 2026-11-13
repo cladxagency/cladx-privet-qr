@@ -47,3 +47,11 @@ export async function onRequestPut({request,env}){
   await env.QR_KV.put(BACKUP_KEY,JSON.stringify(backup));
   return json({ok:true,items,count:items.length});
 }
+
+
+export async function onRequestDelete({request,env}){
+  if(!await authorized(request,env))return json({error:'Unauthorized'},401);
+  if(!env.QR_KV)return json({error:'KV binding QR_KV is missing'},503);
+  await env.QR_KV.delete(BACKUP_KEY);
+  return json({ok:true,deleted:'backup:latest'});
+}
